@@ -1,6 +1,6 @@
 <?php
 
-use Slim\Slim as App;
+use Slim\App;
 use XHGui\ServiceContainer;
 
 require dirname(__DIR__) . '/vendor/autoload.php';

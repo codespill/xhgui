@@ -10,8 +10,11 @@ use PDO;
 use Pimple\Container;
 use RuntimeException;
 use Slim\App;
+use Slim\Http\Environment;
+use Slim\Http\Uri;
 use Slim\Middleware\SessionCookie;
 use Slim\Views\Twig;
+use Slim\Views\TwigExtension;
 use XHGui\Db\PdoRepository;
 use XHGui\Saver\NormalizingSaver;
 use XHGui\Searcher\MongoSearcher;
@@ -68,20 +71,15 @@ class ServiceContainer extends Container
     // Create the Slim app.
     private function slimApp(): void
     {
-        $this['view'] = static function ($c) {
-            // Configure Twig view for slim
-            $view = new Twig();
+        $this['view'] = static function ($app) {
+            $view = new Twig($app['app.template_dir'], [
+                'cache' => $app['app.cache_dir'],
+            ]);
 
-            $view->twigTemplateDirs = [
-                $c['app.template_dir'],
-            ];
-            $view->parserOptions = [
-                'charset' => 'utf-8',
-                'cache' => $c['app.cache_dir'],
-                'auto_reload' => true,
-                'strict_variables' => false,
-                'autoescape' => 'html',
-            ];
+            // Instantiate and add Slim specific extension
+            $router = $app->get('router');
+            $uri = Uri::createFromEnvironment(new Environment($_SERVER));
+            $view->addExtension(new TwigExtension($router, $uri));
 
             return $view;
         };

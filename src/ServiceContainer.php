@@ -92,9 +92,11 @@ class ServiceContainer extends Container
             $app = new App($c['config']);
 
             // Enable cookie based sessions
+            /*
             $app->add(new SessionCookie([
                 'httponly' => true,
             ]));
+            */
 
             $view = $c['view'];
             $view->parserExtensions = [

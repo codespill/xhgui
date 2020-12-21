@@ -9,7 +9,7 @@ use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 use Twig\TwigFunction;
 
-class TwigExtension extends AbstractExtension
+class XHGuiTwigExtension extends AbstractExtension
 {
     /** @var App */
     protected $_app;

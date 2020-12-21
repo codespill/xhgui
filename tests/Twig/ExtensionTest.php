@@ -5,11 +5,11 @@ namespace XHGui\Test\Twig;
 use Slim\App;
 use Slim\Http\Environment;
 use XHGui\Test\TestCase;
-use XHGui\Twig\TwigExtension;
+use XHGui\Twig\XHGuiTwigExtension;
 
 class ExtensionTest extends TestCase
 {
-    /** @var TwigExtension */
+    /** @var XHGuiTwigExtension */
     private $ext;
 
     public function setUp(): void
@@ -18,7 +18,7 @@ class ExtensionTest extends TestCase
         $app = new App();
         $app->get('/test', static function (): void {
         })->setName('test');
-        $this->ext = new TwigExtension($app);
+        $this->ext = new XHGuiTwigExtension($app);
     }
 
     public function testFormatBytes(): void

@@ -10,7 +10,7 @@ use Slim\Http\Request;
 use Slim\Http\Response;
 use Slim\Views\Twig;
 use XHGui\Controller;
-use XHGui\Twig\TwigExtension;
+use XHGui\Twig\XHGuiTwigExtension;
 
 class RouteProvider implements ServiceProviderInterface
 {
@@ -26,7 +26,7 @@ class RouteProvider implements ServiceProviderInterface
             $view = $di['view'];
             $view->parserOptions['cache'] = false;
             $view->parserExtensions = [
-                new TwigExtension($app),
+                new XHGuiTwigExtension($app),
             ];
 
             $app->view($view);

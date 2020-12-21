@@ -18,7 +18,7 @@ use XHGui\Searcher\MongoSearcher;
 use XHGui\Searcher\PdoSearcher;
 use XHGui\ServiceProvider\ConfigProvider;
 use XHGui\ServiceProvider\RouteProvider;
-use XHGui\Twig\TwigExtension;
+use XHGui\Twig\XHGuiTwigExtension;
 
 class ServiceContainer extends Container
 {
@@ -100,7 +100,7 @@ class ServiceContainer extends Container
 
             $view = $c['view'];
             $view->parserExtensions = [
-                new TwigExtension($app),
+                new XHGuiTwigExtension($app),
             ];
             $app->view($view);
 

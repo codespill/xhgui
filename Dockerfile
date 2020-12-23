@@ -37,7 +37,6 @@ RUN set -x \
 		php-pdo_pgsql \
 		php-pdo_sqlite \
 		php-simplexml \
-	&& ln -s /usr/sbin/php-fpm7 /usr/sbin/php-fpm \
 	# Use www-data uid from alpine also present in docker php images
 	&& adduser -u 82 -D -S -G www-data www-data \
 	# Tweak php-fpm config
